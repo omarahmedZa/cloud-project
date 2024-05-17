@@ -78,7 +78,7 @@ function addToCart(product) {
 
 function sendData() { 
     $.ajax({ 
-        url: "/cart_management", 
+        url: "/save_cart_product", 
         type: 'POST',
         data: Object.assign(cart), 
         success: function(response) {

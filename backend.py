@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template, url_for, redirect, s
 import sqlite3
 import json
 import base64
+import database
 from werkzeug.datastructures import ImmutableMultiDict
 
 app = Flask(__name__)
@@ -18,54 +19,27 @@ def db_connection():
 
 @app.route("/product_catalog", methods=['GET'])
 def product_catalog():
-    conn = db_connection()
-    cursor = conn.cursor()
-
-    cursor = conn.execute("SELECT * FROM product")
-    products = [
-        dict(id=row[0], name=row[1], price=row[2], image=base64.b64encode(row[3]).decode('utf-8') if isinstance(row[3], bytes) else None,quantity=row[4])
-        for row in cursor.fetchall()
-    ]
+    products = []
+    products = database.return_all_the_table
     if products is not None:
         return render_template('Product.html', products=products)
 
 @app.route("/cart_management", methods=['GET'])
-def cart_management():    
-    if data:
-        products = []
-        conn = db_connection()
-        cursor = conn.cursor()
-        for i in data:
-            cursor.execute("SELECT * FROM product WHERE id = ?", (i,))
-            row = cursor.fetchone()
-            if row:
-                products.append(dict(id=row[0], name=row[1], price=row[2], image=base64.b64encode(row[3]).decode('utf-8') if isinstance(row[3], bytes) else None, quantity=row[4]))
-        
-        conn.close()
-        if products:
-            return render_template('frontend.html', products=products)
-        else:
-            return jsonify({"error": "No products found"}), 404
+def cart_management():  
+    products = database.return_all_the_table('cart_product')
+    if products:
+        return render_template('frontend.html', products=products)
     else:
-        return jsonify({"error": "No data provided"}), 400
-    return render_template('frontend.html', products=products)
-    
-@app.route("/cart_management", methods=['POST'])
-def cart_management_POST():
-    if request.method == 'POST':
-        data = list(request.form.values())
-        #jso = json.loads(jsonify(data))
-        
-        all_data.append(data)
-        return(all_data)
+        return jsonify({"error": "No products found"}), 404
 
-@app.route("/data", methods=['POST'])
+@app.route("/save_cart_product", methods=['POST'])
 def data():
     if request.method == 'POST':
         data = list(request.form.values())
-        #jso = json.loads(jsonify(data))
-        
-        all_data.append(data)
+        print(data[0])
+        product = database.return_by_id(int(data[0]), 'product')
+        database.add_to_database(product['id'], product['name'], product['price'], product['image'], product['quantity'], 'cart_product')
+    return database.return_all_the_table('cart_product')
     
 
 
