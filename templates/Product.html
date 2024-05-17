@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Product Page with Categories</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/product.css')}}">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -31,6 +31,6 @@
         // Embed product data into a JavaScript variable
         var products = {{ products | tojson }};
     </script>
-    <script src="{{ url_for('static', filename='JS/script.js')}}"></script>
+    <script src="{{ url_for('static', filename='JS/product.js')}}"></script>
 </body>
 </html>
