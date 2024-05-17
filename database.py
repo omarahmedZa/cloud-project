@@ -46,12 +46,12 @@ def delete_from_database(id):
     cursor.close()
 
 def return_all_the_products():
-    conn = db_connection()
+    conn = sqlite3.connect("websiteDataBase.sqlite")
     cursor = conn.cursor()
 
     cursor = conn.execute("SELECT * FROM product")
     products = [
-        dict(id=row[0], name=row[1], price=row[2], image=base64.b64encode(row[3]).decode('utf-8') if isinstance(row[3], bytes) else None,quantity=row[4])
+        dict(id=row[0], name=row[1], price=row[2], image='',quantity=row[4])
         for row in cursor.fetchall()
     ]
 
