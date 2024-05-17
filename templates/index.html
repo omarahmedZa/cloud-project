@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+  <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+</head>
+  <body>
+    <div class="container">
+
+      <h1>Registration Form</h1>
+      <form id="registrationForm" onsubmit="submitForm(event)">
+
+        
+
+        <div class="textbox">
+        <i class="fa fa-user"></i>
+        <input type="text" placeholder="username" id="username" name="username" required>
+        </div>
+      
+        <div class="textbox">
+        <i class="fa fa-envelope"></i>
+        <input type="email" placeholder="email" id="email" name="email" required>
+        </div>
+      
+        <div class="textbox">
+        <i class="fa fa-lock"></i>
+        <input type="password" placeholder="password" id="password" name="password" required>
+        </div>
+
+        <div class="textbox">
+          <i class="fa fa-check"></i>
+        <input type="password" placeholder="confirmPassword" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        
+        <button type="submit">Register</button>
+      </form>
+      <p class="sign in " style="font-weight: bold; font-size: large;" >Are you member?  <a href="log">Sign in here!</a></p>
+    </div>
+    
+    <script src="{{ url_for('static', filename='JS\script.js')}}"></script>
+  </body>
+</html>

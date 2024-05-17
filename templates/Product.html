@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Page with Categories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css')}}">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Product Store</h1>
+        <a href="/cart_management" class="button-link">Go To Cart</a>
+    </header>
+    <nav>
+        <ul id="category-list">
+            <!-- Categories will be dynamically inserted here -->
+        </ul>
+    </nav>
+    <main>
+        <div class="product-grid" id="product-grid">
+            <!-- Product cards will be dynamically inserted here -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Our Product Store. All rights reserved.</p>
+    </footer>
+    <!-- Cart icon -->
+    
+    <script>
+        // Embed product data into a JavaScript variable
+        var products = {{ products | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='JS/script.js')}}"></script>
+</body>
+</html>
