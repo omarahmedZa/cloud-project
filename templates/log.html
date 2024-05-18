@@ -3,13 +3,13 @@
     
     <head>
         <title>Login</title>
-        <link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename='css/loginC.CSS')}}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/login.css')}}">
         <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
         <script src="{{ url_for('static', filename='JS\script1.js')}}"></script>
     </head>
 
     <style>
-
+        
     </style>
     <script>
 
@@ -31,10 +31,10 @@
                 <i class="fa fa-lock"></i>
                 <input type="password" placeholder="password" id="password" name="password" required />
                 </div>
-                
-                <button class="button" type="submit" > Sign in </button>
+
+                <a href="/product_catalog" class="button" type="submit">Login</a>
             </form>
-            <p class="register" style="font-weight: bold; font-size: large; ">Not a member?<a href="signin">Register here!</a></p>
+            <p class="register" style="font-weight: bold; font-size: large; ">Not a member?<a href="/signin">Register here!</a></p>
         </div>
         
         

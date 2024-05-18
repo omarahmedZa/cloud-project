@@ -38,7 +38,7 @@ def return_all_the_table(tablename):
 
     cursor = conn.execute("SELECT * FROM " + str(tablename))
     products = [
-        dict(id=row[0], name=row[1], price=row[2], image=base64.b64encode(row[3]).decode('utf-8') if isinstance(row[3], bytes) else None,quantity=row[4])
+        dict(id=row[0], name=row[1], price=row[2], image= '',quantity=row[4])
         for row in cursor.fetchall()
     ]
     if products is not None:
